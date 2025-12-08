@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar';
+import { AnimeStore } from './services/anime';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  templateUrl: `./app.html`,
 })
-export class App {
-  protected readonly title = signal('my-anime-site');
+export class AppComponent {
+  // Inject the store so the template can access 'store.isDarkMode()'
+  store = inject(AnimeStore);
 }

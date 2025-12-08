@@ -1,0 +1,30 @@
+<div 
+  class="bg-gray-900 rounded-xl overflow-hidden shadow hover:shadow-xl transition cursor-pointer"
+  (click)="onClick.emit(anime.id)"
+>
+  <img 
+    [ngSrc]="anime.coverImage" 
+    width="300" height="450"
+    class="w-full h-64 object-cover"
+    alt="{{ anime.title }}"
+  />
+
+  <div class="p-4">
+    <h3 class="text-lg font-semibold text-white truncate">
+      {{ anime.title }}
+    </h3>
+
+    <p class="text-gray-400 text-sm">
+      ⭐ {{ anime.rating }} · {{ anime.episodes }} eps
+    </p>
+
+    <div class="flex flex-wrap gap-1 mt-2">
+      <span 
+        *ngFor="let g of anime.genres" 
+        class="text-xs bg-gray-700 px-2 py-1 rounded-full text-gray-300"
+      >
+        {{ g }}
+      </span>
+    </div>
+  </div>
+</div>
