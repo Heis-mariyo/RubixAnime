@@ -68,33 +68,33 @@ export class AnimeStore {
 
   private loadInitialData() {
     this.loading.set(true);
-    console.log('⚡ [AnimeStore] Starting API Fetch...'); // Debug Log 1
+    console.log(' [AnimeStore] Starting API Fetch...'); // Debug Log 1
 
     from(fetch('https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=10'))
       .pipe(
         switchMap(response => {
-           console.log('✅ [AnimeStore] Response Received'); // Debug Log 2
+           console.log(' [AnimeStore] Response Received'); // Debug Log 2
            return response.json();
         }),
         map((res: any) => {
-          console.log('📦 [AnimeStore] Raw Data:', res.data); // Debug Log 3
+          console.log(' [AnimeStore] Raw Data:', res.data); // Debug Log 3
           // If res.data is null, we throw error to catch block
           if (!res.data) throw new Error('No data found in API response');
           return res.data.map((item: any) => this.mapJikanToAnime(item));
         }),
         catchError((err: any) => {
-          console.error('❌ [AnimeStore] API Error:', err); // Error Log
+          console.error(' [AnimeStore] API Error:', err); // Error Log
           return of([]); 
         })
       )
       .subscribe({
         next: (data) => {
-          console.log('✨ [AnimeStore] Store Updated with:', data.length, 'items'); // Success Log
+          console.log(' [AnimeStore] Store Updated with:', data.length, 'items'); // Success Log
           this.trendingAnime.set(data);
           this.loading.set(false);
         },
         error: (err) => {
-            console.error('❌ [AnimeStore] Subscribe Error:', err);
+            console.error(' [AnimeStore] Subscribe Error:', err);
             this.loading.set(false);
         }
       });

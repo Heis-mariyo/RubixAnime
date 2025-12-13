@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   // This method was missing in the previous snippet
   ngOnInit() {
     this.searchControl.valueChanges.pipe(
-      debounceTime(400),        // Wait 400ms after typing stops
+      debounceTime(200),        // Wait 200ms after typing stops
       distinctUntilChanged(),   // Ignore if the value is the same as before
       tap(() => this.loading = true), // Show skeletons
       switchMap(query => this.store.searchAnime(query || '')), // Call API

@@ -1,15 +1,9 @@
-<!-- DEBUG: If you see this, the component is loaded! -->
-<!-- <div class="p-4 bg-red-900 text-white font-bold text-center" *ngIf="store.trendingAnime().length > 0">
-  SYSTEM CHECK: Loaded {{ store.trendingAnime().length }} Anime
-</div> -->
-
 <!-- Hero Banner -->
 <div class="relative h-[50vh] md:h-[60vh] w-full overflow-hidden flex items-center">
-    <!-- Using a static image to ensure visibility -->
     <div class="absolute inset-0 bg-[url('https://wallpapers.com/images/hd/anime-scenery-1920x1080-1.jpg')] bg-cover bg-center"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-16">
-      <span class="text-purple-400 font-bold tracking-widest uppercase mb-2 block">Featured Today</span>
+      <span class="text-blue-400 font-bold tracking-widest uppercase mb-2 block">Featured Today</span>
       <h1 class="text-5xl md:text-7xl font-black text-white mb-6 max-w-2xl drop-shadow-2xl">
         Explore Anime
       </h1>
@@ -22,24 +16,27 @@
 <!-- Trending Section -->
 <div class="max-w-7xl mx-auto px-4 mt-12 pb-12">
   <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-    <span class="text-yellow-400">🔥</span> Trending Now
+    <span class="text-blue-400">Trending</span> Now
   </h2>
   
-  <!-- Anime Grid -->
   <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
     
-    <!-- Loading State -->
-    <ng-container *ngIf="store.loading()">
-        <app-skeleton-card *ngFor="let i of [1,2,3,4,5]"></app-skeleton-card>
-    </ng-container>
+    <!-- Loading State using @if -->
+    @if (store.loading()) {
+        <!-- Loop using @for (track by index since it's just dummy numbers) -->
+        @for (i of [1,2,3,4,5]; track i) {
+            <app-skeleton-card></app-skeleton-card>
+        }
+    }
     
     <!-- Data State -->
-    <!-- *ngFor loop iterating over the signal -->
-    <app-anime-card 
-      *ngFor="let anime of store.trendingAnime()" 
-      [anime]="anime"
-      (onClick)="onAnimeClick($event)">
-    </app-anime-card>
+    <!-- Loop using @for (track by anime.id for performance) -->
+    @for (anime of store.trendingAnime(); track anime.id) {
+        <app-anime-card 
+          [anime]="anime"
+          (onClick)="onAnimeClick($event)">
+        </app-anime-card>
+    }
 
   </div>
 </div>
