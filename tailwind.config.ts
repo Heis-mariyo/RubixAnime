@@ -1,12 +1,12 @@
 import type { Config } from 'tailwindcss';
 
 export default {
-  // Update this line to be more inclusive
   content: [
     "./src/**/*.{html,ts}",
     "./src/app/**/*.{html,ts}",
     "./src/index.html"
   ],
+  // 'class' strategy is required for manual toggle (light/dark mode)
   darkMode: 'class',
   theme: {
     extend: {

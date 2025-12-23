@@ -1,81 +1,110 @@
-<nav class="fixed top-0 w-full z-50 transition-all duration-300"
-      [ngClass]="{'bg-black/90 backdrop-blur-xl border-b border-white/5': isScrolled || isMenuOpen(), 'bg-transparent': !isScrolled && !isMenuOpen()}">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      
-      <!-- Logo -->
-      <div class="flex items-start justify-start gap-2 cursor-pointer z-50" (click)="navigateTo('')">
-        <h2 class="w-8 h-8 flex text-white font-mono text-2xl">
-          RUBIX
-          <span class="text-blue-600 font-bold text-2xl tracking-wider font-mono">ANIME</span>
-        </h2>
-      </div>
+<!-- 
+      Navbar Container 
+      - fixed top-0: Makes it "sticky at all times"
+      - dark: classes handle the black background override
+    -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300"
+         [ngClass]="{
+           'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm dark:bg-black/90 dark:border-white/5': isScrolled || isMenuOpen(),
+           'bg-transparent': !isScrolled && !isMenuOpen()
+         }">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          
+          <!-- Logo -->
+          <div class="flex items-start justify-start gap-2 cursor-pointer z-50" (click)="navigateTo('')">
+            <!-- Text adapts: Dark in light mode, White in dark mode -->
+            <h2 class="w-8 h-8 flex text-gray-900 dark:text-white font-mono text-2xl font-bold">
+              RUBIX
+              <span class="text-blue-600 font-bold text-2xl tracking-wider font-mono ml-2">ANIME</span>
+            </h2>
+          </div>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center gap-8">
-        <a (click)="navigateTo('')" class="text-gray-300 hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">Home</a>
-        <a (click)="navigateTo('trending')" class="text-gray-300 hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">Trending</a>
-        <a (click)="navigateTo('list')" class="text-gray-300 hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">My List</a>
-      </div>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center gap-8">
+            <a (click)="navigateTo('')" 
+               class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">
+               Home
+            </a>
+            <a (click)="navigateTo('trending')" 
+               class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">
+               Trending
+            </a>
+            <a (click)="navigateTo('list')" 
+               class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white cursor-pointer transition-colors text-sm font-medium uppercase tracking-wide">
+               My Collection
+            </a>
+          </div>
 
-      <!-- Right Actions -->
-      <div class="hidden md:flex items-center gap-4">
-        <button (click)="navigateTo('search')" class="p-2 text-gray-400 hover:text-white transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-        </button>
-        <button (click)="toggleTheme.emit()" class="p-2 text-gray-400 hover:text-yellow-400 transition-colors">
-          <!-- Using @if for Icon switching -->
-          @if (!isDark) {
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-          }
-          @if (isDark) {
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-          }
-        </button>
-      </div>
-
-      <!-- Mobile Hamburger Button -->
-      <div class="flex md:hidden items-center gap-4">
-        <button (click)="toggleTheme.emit()" class="p-2 text-gray-400 hover:text-yellow-400 transition-colors">
-            @if (!isDark) {
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-            }
-            @if (isDark) {
+          <!-- Right Actions -->
+          <div class="hidden md:flex items-center gap-4">
+            <button (click)="navigateTo('search')" class="p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </button>
+            
+            <button (click)="toggleTheme.emit()" class="p-2 text-gray-500 hover:text-yellow-500 dark:text-gray-400 dark:hover:text-yellow-400 transition-colors">
+              @if (!isDark) {
+                <!-- Moon Icon for Light Mode -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-            }
-        </button>
-        
-        <button (click)="toggleMenu()" class="text-white p-2 z-50">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            @if (!isMenuOpen()) {
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            }
-            @if (isMenuOpen()) {
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            }
-          </svg>
-        </button>
+              }
+              @if (isDark) {
+                <!-- Sun Icon for Dark Mode -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+              }
+            </button>
+          </div>
+
+          <!-- Mobile Hamburger Button -->
+          <div class="flex md:hidden items-center gap-4">
+            <button (click)="toggleTheme.emit()" class="p-2 text-gray-600 hover:text-yellow-500 dark:text-gray-400 dark:hover:text-yellow-400 transition-colors">
+               @if (!isDark) {
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+               }
+               @if (isDark) {
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+               }
+            </button>
+            
+            <button (click)="toggleMenu()" class="p-2 z-50 text-gray-900 dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                @if (!isMenuOpen()) {
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                }
+                @if (isMenuOpen()) {
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                }
+              </svg>
+            </button>
+          </div>
+
+        </div>
       </div>
 
-    </div>
-  </div>
+      <!-- Mobile Dropdown Menu -->
+      @if (isMenuOpen()) {
+        <div class="md:hidden absolute top-16 left-0 w-full bg-white/95 dark:bg-[#0f0f0f]/95 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-2xl transition-all duration-300">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col items-center">
+            
+            <div class="w-full mb-4 mt-2">
+                <div class="relative" (click)="navigateTo('search')">
+                <input disabled type="text" placeholder="Search..." class="w-full bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg py-2 px-4 text-gray-900 dark:text-white text-sm">
+                <svg class="absolute right-3 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+            </div>
 
-  <!-- Mobile Dropdown Menu -->
-  @if (isMenuOpen()) {
-    <div class="md:hidden absolute top-16 left-0 w-full bg-[#0f0f0f]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300">
-        <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col items-center">
-        
-        <div class="w-full mb-4 mt-2">
-            <div class="relative" (click)="navigateTo('search')">
-            <input disabled type="text" placeholder="Search..." class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-4 text-white text-sm">
-            <svg class="absolute right-3 top-2.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <a (click)="navigateTo('')" 
+               class="w-full text-center py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">
+               Home
+            </a>
+            <a (click)="navigateTo('trending')" 
+               class="w-full text-center py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">
+               Trending
+            </a>
+            <a (click)="navigateTo('list')" 
+               class="w-full text-center py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">
+               My List
+            </a>
             </div>
         </div>
-
-        <a (click)="navigateTo('')" class="w-full text-center py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">Home</a>
-        <a (click)="navigateTo('trending')" class="w-full text-center py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">Trending</a>
-        <a (click)="navigateTo('list')" class="w-full text-center py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg cursor-pointer transition-colors font-medium">My List</a>
-        </div>
-    </div>
-  }
-</nav>
+      }
+    </nav>
