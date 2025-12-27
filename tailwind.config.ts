@@ -6,9 +6,9 @@ export default {
     "./src/app/**/*.{html,ts}",
     "./src/index.html"
   ],
-  // 'class' strategy is required for manual toggle (light/dark mode)
-  darkMode: 'class',
-  theme: {
+    
+  darkMode: ['class', '[class~="dark"]'], // More specific selector
+    theme: {
     extend: {
       fontFamily: {
         sans: ['"Noto Sans"', 'sans-serif'],

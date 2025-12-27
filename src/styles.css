@@ -1,6 +1,28 @@
 /* Tailwind v4 Syntax */
 @import "tailwindcss";
 
+/* Force class-based dark mode to override media queries */
+@layer components {
+  /* Light mode overrides */
+  html:not(.dark) body,
+  html:not(.dark) #root,
+  html:not(.dark) app-root,
+  html:not(.dark) app-root > div > div {
+    background-color: white !important;
+    color: rgb(17, 24, 39) !important;
+  }
+
+  /* Dark mode overrides */
+  html.dark body,
+  html.dark #root,
+  html.dark app-root,
+  html.dark app-root > div > div {
+    background-color: #0f0f0f !important;
+    color: rgb(243, 244, 246) !important;
+  }
+}
+
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -9,13 +31,7 @@
   body {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
-    
-    /* FIX: Use Tailwind utility classes for dynamic background 
-       - Default (Light): White background, Dark text
-       - Dark Mode: #0f0f0f background, White text
-       - transition-colors: Smooth fade between modes
-    */
-    @apply bg-white text-gray-900 dark:bg-[#0f0f0f] dark:text-white transition-colors duration-300;
+    /* Remove the @apply line - let the app component handle it */
   }
 
   /* Ensure the app takes full height */
