@@ -4,6 +4,7 @@ import { Home } from './pages/home/home';
 import { SearchComponent } from './pages/search/search';
 import { AnimeDetails } from './pages/anime-details/anime-details';
 import { MyList } from './pages/my-list/my-list';
+import { Watch } from './pages/watch/watch';
 
 export const routes: Routes = [
   { 
@@ -27,7 +28,12 @@ export const routes: Routes = [
     component: AnimeDetails, 
     title: 'Anime Details' 
   },
-  // Wildcard route: Redirects invalid URLs (like /my-list if not defined) back to Home
+  { 
+    path: 'watch/:id', 
+    component: Watch, 
+    title: 'Watch Anime' 
+  },
+  // Wildcard route: Redirects invalid URLs to home
   { 
     path: '**', 
     redirectTo: '' 

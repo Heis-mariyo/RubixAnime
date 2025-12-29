@@ -1,64 +1,64 @@
-<div class="min-h-screen pt-24 px-4 max-w-7xl mx-auto pb-12">
-  <!-- Header -->
-  <div class="mb-10 border-b border-gray-200 dark:border-white/10 pb-6">
-    <h1
-      class="text-4xl font-black text-gray-900 dark:text-white font-mono tracking-tight flex items-center gap-3"
-    >
-      <span class="text-blue-500">MY</span> LIST
-      <span
-        class="text-sm bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full border border-blue-500/20 font-sans font-bold"
-      >
-        {{ savedAnimes().length }}
-      </span>
-    </h1>
-    <p class="text-gray-600 dark:text-gray-400 mt-2">
-      Your personal collection of saved anime.
-    </p>
-  </div>
+ <div class="min-h-screen pt-24 px-4 max-w-7xl mx-auto pb-12">
+      <!-- Header -->
+      <div class="mb-10 border-b border-gray-200 dark:border-white/10 pb-6">
+        <h1
+          class="text-4xl font-black text-black dark:text-white font-mono tracking-tight flex items-center gap-3"
+        >
+          <span class="text-blue-500">MY</span> LIST
+          <span
+            class="text-sm bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full border border-blue-500/20 font-sans font-bold"
+          >
+            {{ savedAnimes().length }}
+          </span>
+        </h1>
+        <p class="text-gray-700 dark:text-gray-400 mt-2">
+          Your personal collection of saved anime.
+        </p>
+      </div>
 
-  <!-- Content Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-    <!-- List Items -->
-    @for (anime of savedAnimes(); track anime.id) {
-    <app-anime-card [anime]="anime" (onClick)="onAnimeClick($event)">
-    </app-anime-card>
-    }
-  </div>
+      <!-- Content Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <!-- List Items -->
+        @for (anime of savedAnimes(); track anime.id) {
+        <app-anime-card [anime]="anime" (onClick)="onAnimeClick($event)">
+        </app-anime-card>
+        }
+      </div>
 
-  <!-- Empty State -->
-  @if (savedAnimes().length === 0) {
-  <div class="flex flex-col items-center justify-center py-20 text-center">
-    <div
-      class="w-24 h-24 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 animate-pulse"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-10 w-10 text-gray-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-        />
-      </svg>
+      <!-- Empty State -->
+      @if (savedAnimes().length === 0) {
+      <div class="flex flex-col items-center justify-center py-20 text-center">
+        <div
+          class="w-24 h-24 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 animate-pulse"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          Your list is empty
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 max-w-md mb-8">
+          Start exploring and click the "Add to List" button to save your favorites
+          here.
+        </p>
+        <button
+          (click)="goHome()"
+          class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+        >
+          Explore Trending
+        </button>
+      </div>
+      }
     </div>
-    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-      Your list is empty
-    </h3>
-    <p class="text-gray-600 dark:text-gray-400 max-w-md mb-8">
-      Start exploring and click the "Add to List" button to save your favorites
-      here.
-    </p>
-    <button
-      (click)="goHome()"
-      class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]"
-    >
-      Explore Trending
-    </button>
-  </div>
-  }
-</div>

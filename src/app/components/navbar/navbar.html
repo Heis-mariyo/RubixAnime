@@ -3,10 +3,10 @@
       - fixed top-0: Makes it "sticky at all times"
       - dark: classes handle the black background override
     -->
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300"
+    <nav class="absolute top-0 w-full z-50 transition-all duration-300"
          [ngClass]="{
            'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm dark:bg-black/90 dark:border-white/5': isScrolled || isMenuOpen(),
-           'bg-transparent': !isScrolled && !isMenuOpen()
+           'bg-white/60 backdrop-blur-md border-b border-white/5 dark:bg-black/40': !isScrolled && !isMenuOpen()
          }">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">

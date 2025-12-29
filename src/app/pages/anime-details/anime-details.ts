@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { AnimeStore } from '../../services/anime';
 import { Episode } from '../../model/anime.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-anime-details',
@@ -14,6 +15,7 @@ import { Episode } from '../../model/anime.model';
 export class AnimeDetails implements OnInit, AfterViewInit {
   store = inject(AnimeStore);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
@@ -82,5 +84,9 @@ export class AnimeDetails implements OnInit, AfterViewInit {
 
   onToggleList(id: string) {
     this.store.toggleMyList(id);
+  }
+
+  watchEpisode(id: string) {
+    this.router.navigate(['/watch', id]);
   }
 }

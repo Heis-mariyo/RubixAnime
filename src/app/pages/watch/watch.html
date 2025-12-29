@@ -1,0 +1,108 @@
+<div
+  class="min-h-screen flex flex-col transition-colors duration-300 bg-white text-gray-900 dark:bg-black dark:text-white"
+>
+  <!-- Global Navbar -->
+  <app-navbar [isDark]="store.isDarkMode()" (toggleTheme)="store.toggleTheme()">
+  </app-navbar>
+
+  <!-- Main Player Area -->
+  <!-- Added pt-20 to push content down below the fixed navbar -->
+  <div
+    class="flex-1 flex flex-col items-center justify-center p-4 md:p-8 pt-20 md:pt-24"
+  >
+    <!-- Back Navigation Button -->
+    <div class="w-full max-w-6xl mb-4 flex justify-between items-center">
+      <button
+        (click)="goBack()"
+        class="flex items-center gap-2 text-sm font-medium transition-colors text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+        Back to Details
+      </button>
+
+      <span class="font-bold tracking-wider text-blue-600 dark:text-blue-500"
+        >RUBIX PLAYER</span
+      >
+    </div>
+
+    <div
+      class="w-full max-w-6xl aspect-video rounded-2xl overflow-hidden relative group transition-all duration-300 bg-gray-100 border border-gray-200 shadow-xl dark:bg-gray-900 dark:border-white/10 dark:shadow-[0_0_50px_rgba(168,85,247,0.2)]"
+    >
+      <!-- Video Iframe -->
+      @if (safeUrl) {
+      <iframe
+        [src]="safeUrl"
+        class="w-full h-full"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      >
+      </iframe>
+      } @else {
+      <div
+        class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 dark:text-gray-500"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 mb-4 opacity-50"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+          />
+        </svg>
+        <p>Streaming server is currently unavailable.</p>
+        <p class="text-sm mt-2 opacity-60">
+          Connect a video API provider to enable full episodes.
+        </p>
+      </div>
+      }
+    </div>
+
+    <!-- Episode Info -->
+    <div class="w-full max-w-6xl mt-6">
+      <h1 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+        {{ currentTitle() }}
+      </h1>
+      <div
+        class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400"
+      >
+        <span
+          class="px-2 py-0.5 rounded border bg-blue-100 text-blue-600 border-blue-200 dark:bg-blue-600/20 dark:text-blue-400 dark:border-blue-500/30"
+        >
+          EPISODE 1
+        </span>
+        <span
+          >Server:
+          <span class="font-semibold text-blue-900 dark:text-yellow-400"
+            >Rubix (Trailer)</span
+          ></span
+        >
+        <span
+          >Quality:
+          <span class="font-semibold text-gray-900 dark:text-white"
+            >1080p</span
+          ></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
